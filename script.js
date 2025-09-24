@@ -1,3 +1,22 @@
+// Инициализация - загрузка финального изображения
+document.addEventListener("DOMContentLoaded", () => {
+  const rugDesignName = getUrlParameter("design");
+  const finalRugImage = document.getElementById("final-rug-image");
+  const finalImageStep = document.querySelector(".final-image img");
+
+  if (rugDesigns[rugDesignName]) {
+    finalRugImage.src =
+      window.location.origin +
+      "/assets/rug-designs/" +
+      rugDesigns[rugDesignName];
+    finalImageStep.src = finalRugImage.src; // Обновляем data-src для шага  
+  } else {
+    // Если параметр не найден, показываем изображение по умолчанию
+    finalRugImage.src =
+      "https://via.placeholder.com/600x400/a4c3b2?text=Choose+your+design";
+  }
+});
+
 // Объект с путями к изображениям для разных дизайнов
 const rugDesigns = {
   blue_abstract: "blue-abstract.jpg",
@@ -5,104 +24,96 @@ const rugDesigns = {
 
 // Функция для получения параметра из URL
 function getUrlParameter(name) {
-    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-    const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-    const results = regex.exec(location.search);
-    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  const regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+  const results = regex.exec(location.search);
+  return results === null
+    ? ""
+    : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-// --- Модальное окно для изображений (старая логика) ---
-const imageModal = document.getElementById("myModal");
+// --- Универсальное модальное окно ---
+const universalModal = document.getElementById("universalModal");
 const modalImg = document.getElementById("modal-image");
-const closeBtn = document.getElementsByClassName("close")[0];
-const prevBtn = document.getElementsByClassName("prev")[0];
-const nextBtn = document.getElementsByClassName("next")[0];
+const closeBtn = universalModal.querySelector(".close");
+const prevBtn = universalModal.querySelector(".prev");
+const nextBtn = universalModal.querySelector(".next");
 const captionText = document.getElementById("caption");
-const images = document.querySelectorAll('.step-image img');
-let currentImageIndex = 0;
+const modalImageWrapper = universalModal.querySelector(".modal-image-wrapper");
+const modalVideoWrapper = universalModal.querySelector(".modal-video-wrapper");
+const videoPlayer = document.getElementById("video-player");
 
-// Функция для открытия модального окна с изображением
-function openImageModal(index) {
-    imageModal.style.display = "block";
-    modalImg.src = images[index].src;
-    
-    const parent = images[index].closest('.step-item');
-    const description = parent.querySelector('.step-description').textContent;
-    captionText.textContent = description;
+// Собираем все элементы, которые могут быть показаны в модальном окне
+const contentItems = document.querySelectorAll(".step-image, .step-video");
+let currentContentIndex = 0;
 
-    currentImageIndex = index;
+// Функция для закрытия модального окна
+function closeModal() {
+  universalModal.style.display = "none";
+  videoPlayer.innerHTML = ""; // Останавливаем видео
 }
 
-// Функции навигации для изображений
-function showPrevImage() {
-    currentImageIndex--;
-    if (currentImageIndex < 0) {
-        currentImageIndex = images.length - 1;
-    }
-    openImageModal(currentImageIndex);
-}
+// Функция для открытия модального окна
+function openModal(index) {
+  universalModal.style.display = "block";
+  const item = contentItems[index];
+  currentContentIndex = index;
 
-function showNextImage() {
-    currentImageIndex++;
-    if (currentImageIndex >= images.length) {
-        currentImageIndex = 0;
-    }
-    openImageModal(currentImageIndex);
-}
+  // Скрываем все контейнеры
+  modalImageWrapper.style.display = "none";
+  modalVideoWrapper.style.display = "none";
+  captionText.textContent = "";
 
-// Обработчики для изображений
-images.forEach((img, index) => {
-    img.onclick = function() {
-        openImageModal(index);
-    };
-});
+  // Определяем тип контента
+  const isImage = item.classList.contains("step-image");
+  const isVideo = item.classList.contains("step-video");
 
-closeBtn.onclick = function() {
-    imageModal.style.display = "none";
-}
-
-prevBtn.onclick = showPrevImage;
-nextBtn.onclick = showNextImage;
-
-imageModal.onclick = function(event) {
-    if (event.target === imageModal) {
-        imageModal.style.display = "none";
-    }
-}
-
-// --- Модальное окно для видео (новая логика) ---
-const videoModal = document.getElementById("videoModal");
-const videoCloseBtn = document.getElementById("video-close-btn");
-const videos = document.querySelectorAll('.step-video');
-
-videos.forEach(videoDiv => {
-    videoDiv.onclick = function() {
-        const videoSrc = this.getAttribute('data-source-id');
-        document.getElementById('video-player').innerHTML = `<iframe src="${videoSrc}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-        videoModal.style.display = "block";
-    };
-});
-
-videoModal.onclick = function(event) {
-    if (event.target === videoModal) {
-        videoModal.style.display = "none";
-        document.getElementById('video-player').innerHTML = ''; // Останавливаем видео
-    }
-}
-
-// Инициализация - загрузка финального изображения
-document.addEventListener("DOMContentLoaded", () => {
-  const rugDesignName = getUrlParameter("design");
-  const finalRugImage = document.getElementById("final-rug-image");
-
-  if (rugDesigns[rugDesignName]) {
-    finalRugImage.src =
-      window.location.origin +
-      "/assets/rug-designs/" +
-      rugDesigns[rugDesignName];
-  } else {
-    // Если параметр не найден, показываем изображение по умолчанию
-    finalRugImage.src =
-      "https://via.placeholder.com/600x400/a4c3b2?text=Choose+your+design";
+  // Показываем нужный контент
+  if (isImage) {
+    modalImageWrapper.style.display = "block";
+    modalImg.src = item.querySelector("img").src;
+    captionText.textContent =
+      item.parentElement.querySelector(".step-description").textContent;
+    prevBtn.style.display = "block";
+    nextBtn.style.display = "block";
+  } else if (isVideo) {
+    modalVideoWrapper.style.display = "block";
+    const videoSrc = item.dataset.videosrc;
+    videoPlayer.innerHTML = `
+            <video controls autoplay muted>
+                <source src="${videoSrc}" type="video/mp4">
+                Ваш браузер не поддерживает HTML5 видео.
+            </video>
+        `;
+    captionText.textContent =
+      item.parentElement.querySelector(".step-description").textContent;
+    prevBtn.style.display = "block";
+    nextBtn.style.display = "block";
   }
+}
+
+// Обработчики кликов
+contentItems.forEach((item, index) => {
+  item.onclick = () => openModal(index);
 });
+
+closeBtn.onclick = closeModal;
+
+// Навигация по всей галерее (изображения + видео)
+prevBtn.onclick = () => {
+  currentContentIndex =
+    (currentContentIndex - 1 + contentItems.length) % contentItems.length;
+  openModal(currentContentIndex);
+};
+
+nextBtn.onclick = () => {
+  currentContentIndex = (currentContentIndex + 1) % contentItems.length;
+  openModal(currentContentIndex);
+};
+
+// Закрытие по клику вне модального окна
+universalModal.onclick = (event) => {
+  if (event.target === universalModal) {
+    closeModal();
+  }
+};

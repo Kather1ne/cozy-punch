@@ -395,43 +395,6 @@ body::after {
     transform: translate(-50%, -50%) scale(1.1);
 }
 
-/* --- Добавьте стили для модального окна с видео --- */
-#videoModal {
-    display: none;
-    position: fixed;
-    z-index: 1001;
-    /* Выше, чем обычное модальное окно */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-}
-
-#videoModal .modal-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 800px;
-}
-
-#video-player {
-    position: relative;
-    padding-bottom: 100%;
-    /* Соотношение сторон 16:9 */
-    height: 0;
-}
-
-#video-player iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 800px;
-    height: 800px;
-
-}
 
 .step-description {
     font-size: 0.9rem;
@@ -455,7 +418,9 @@ body::after {
     padding: 0 10px;
 }
 
-/* --- Стили для модального окна --- */
+/* ... (весь предыдущий CSS) ... */
+
+/* --- Стили для универсального модального окна --- */
 .modal {
     display: none;
     position: fixed;
@@ -466,25 +431,34 @@ body::after {
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.9);
+    text-align: center;
 }
 
-.modal-content {
-    margin: auto;
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    animation-name: fade-in;
-    animation-duration: 0.35s;
-    position: absolute;
-    left: 50%;
+/* Общий контейнер для контента внутри модального окна */
+.modal-content-container {
+    position: relative;
     top: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 20px;
-    border: 2px solid var(--secondary-color);
+    transform: translateY(-50%);
+    margin: auto;
+    width: 80%;
+    max-width: 800px;
+    border-radius: 10px;
     overflow: hidden;
 }
 
+/* Контейнеры для изображения и видео. По умолчанию скрыты */
+.modal-image-wrapper,
+.modal-video-wrapper {
+    display: none;
+}
+
+.modal-content {
+    display: block;
+    width: 100%;
+    height: auto;
+    animation-name: fade-in;
+    animation-duration: 0.6s;
+}
 
 .close,
 .prev,
@@ -498,14 +472,6 @@ body::after {
     cursor: pointer;
     user-select: none;
     padding: 16px;
-}
-
-.prev,
-.next {
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 60px;
-    padding: 20px;
 }
 
 .close:hover,
@@ -529,15 +495,29 @@ body::after {
     border-radius: 3px 0 0 3px;
 }
 
-.modal-image-wrapper {
-    position: relative;
-    top: 50%;
-    transform: translate(-50%, -50%);
+/* .caption-container {
     text-align: center;
-    width: 800px;
-    left: 50%;
-    padding-bottom: 700px;
+    color: #f2f2f2;
+    padding: 10px;
+} */
+
+/* Стили для видеоплеера */
+#video-player {
+    position: relative;
+    padding-bottom: 100%;
+    /* Соотношение сторон 16:9 */
+    height: 0;
 }
+
+#video-player video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+}
+
 
 .caption-container {
     text-align: center;
