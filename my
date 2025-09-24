@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Инструкция: создаем коврик</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        /* --primary-color: #f7d7c4; Нежно-персиковый */
+        --primary-color: #ffae7e; /* персиковый */
+        --secondary-color: #a4c3b2; /* Мятный */
+        --third-color: #f6d0e1; /* розовый */
+        --text-color: #333;
+        --background-color: #f9f9f9;
+        --sprinkle-pink: #f6d0e1;
+        --sprinkle-peach: #f7d7c4;
+        --sprinkle-mint: #a4c3b2;
+      }
+
+      body {
+        font-family: "Noto Sans", sans-serif;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      /* --- Графические элементы "Узелки" (круги) --- */
+      body::before,
+      body::after {
+        content: "";
+        position: fixed;
+        width: 150px;
+        height: 150px;
+        background-color: rgba(
+          var(--sprinkle-peach),
+          0.4
+        ); /* Используем цвета "посыпки" */
+        border-radius: 50%;
+        z-index: -1;
+        filter: blur(50px);
+        opacity: 0.6;
+      }
+
+      body::before {
+        top: 10%;
+        left: -50px;
+        background-color: rgba(var(--sprinkle-mint), 0.3);
+        width: 200px;
+        height: 200px;
+      }
+
+      body::after {
+        bottom: 5%;
+        right: -70px;
+        background-color: rgba(var(--sprinkle-pink), 0.5);
+      }
+
+      /* --- Графические элементы "Посыпка" (стежки) --- */
+      .sprinkle-item {
+        position: absolute;
+        width: 40px; /* Размер "палочки" */
+        height: 8px; /* Толщина "палочки" */
+        border-radius: 4px; /* Закругленные концы */
+        opacity: 0.5; /* Полупрозрачность */
+        z-index: -1;
+        pointer-events: none; /* Не реагируют на клики */
+      }
+
+      /* Цвета и позиционирование для каждого элемента "посыпки" */
+      .sprinkle-item:nth-child(1) {
+        background-color: var(--sprinkle-mint);
+        top: 5%;
+        left: 10%;
+        transform: rotate(15deg);
+      }
+      .sprinkle-item:nth-child(2) {
+        background-color: var(--sprinkle-peach);
+        top: 12%;
+        right: 8%;
+        transform: rotate(-25deg);
+      }
+      .sprinkle-item:nth-child(3) {
+        background-color: var(--sprinkle-pink);
+        top: 20%;
+        left: 3%;
+        transform: rotate(40deg);
+      }
+      .sprinkle-item:nth-child(4) {
+        background-color: var(--sprinkle-mint);
+        top: 28%;
+        right: 15%;
+        transform: rotate(-10deg);
+      }
+      .sprinkle-item:nth-child(5) {
+        background-color: var(--sprinkle-peach);
+        top: 35%;
+        left: 12%;
+        transform: rotate(50deg);
+      }
+      .sprinkle-item:nth-child(6) {
+        background-color: var(--sprinkle-pink);
+        top: 40%;
+        right: 5%;
+        transform: rotate(-35deg);
+      }
+      .sprinkle-item:nth-child(7) {
+        background-color: var(--sprinkle-mint);
+        top: 48%;
+        left: 8%;
+        transform: rotate(20deg);
+      }
+      .sprinkle-item:nth-child(8) {
+        background-color: var(--sprinkle-peach);
+        top: 55%;
+        right: 12%;
+        transform: rotate(-5deg);
+      }
+      .sprinkle-item:nth-child(9) {
+        background-color: var(--sprinkle-pink);
+        top: 62%;
+        left: 15%;
+        transform: rotate(60deg);
+      }
+      .sprinkle-item:nth-child(10) {
+        background-color: var(--sprinkle-mint);
+        top: 70%;
+        right: 3%;
+        transform: rotate(-40deg);
+      }
+      .sprinkle-item:nth-child(11) {
+        background-color: var(--sprinkle-peach);
+        top: 78%;
+        left: 5%;
+        transform: rotate(25deg);
+      }
+      .sprinkle-item:nth-child(12) {
+        background-color: var(--sprinkle-pink);
+        top: 85%;
+        right: 10%;
+        transform: rotate(-15deg);
+      }
+      .sprinkle-item:nth-child(13) {
+        background-color: var(--sprinkle-mint);
+        top: 92%;
+        left: 18%;
+        transform: rotate(30deg);
+      }
+      .sprinkle-item:nth-child(14) {
+        background-color: var(--sprinkle-peach);
+        top: 3%;
+        left: 60%;
+        transform: rotate(-20deg);
+      }
+      .sprinkle-item:nth-child(15) {
+        background-color: var(--sprinkle-pink);
+        top: 8%;
+        right: 65%;
+        transform: rotate(35deg);
+      }
+      .sprinkle-item:nth-child(16) {
+        background-color: var(--sprinkle-mint);
+        top: 18%;
+        left: 70%;
+        transform: rotate(-55deg);
+      }
+      .sprinkle-item:nth-child(17) {
+        background-color: var(--sprinkle-peach);
+        top: 25%;
+        right: 60%;
+        transform: rotate(10deg);
+      }
+      .sprinkle-item:nth-child(18) {
+        background-color: var(--sprinkle-pink);
+        top: 33%;
+        left: 75%;
+        transform: rotate(-45deg);
+      }
+      .sprinkle-item:nth-child(19) {
+        background-color: var(--sprinkle-mint);
+        top: 40%;
+        right: 70%;
+        transform: rotate(25deg);
+      }
+      .sprinkle-item:nth-child(20) {
+        background-color: var(--sprinkle-peach);
+        top: 47%;
+        left: 65%;
+        transform: rotate(-10deg);
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 0 20px;
+        position: relative;
+        /* background-color: #fff; */
+        border-radius: 15px;
+        /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); */
+        padding-top: 50px;
+        padding-bottom: 50px;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .header h1 {
+        font-size: 3rem;
+        color: var(--secondary-color);
+        margin-bottom: 10px;
+      }
+
+      .intro-text {
+        text-align: center;
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto 50px;
+        padding: 0 20px;
+      }
+
+      .section {
+        margin-bottom: 60px;
+        padding: 0 20px;
+      }
+
+      .section h2 {
+        font-size: 2rem;
+        color: var(--primary-color);
+        border-bottom: 2px solid var(--primary-color);
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      .step-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+      }
+
+      .step-item {
+        flex: 1 1 200px;
+        max-width: 200px;
+        text-align: center;
+      }
+
+      .step-image {
+        width: 100%; /* Занимает всю доступную ширину родительского элемента */
+        height: 0; /* Обнуляем высоту */
+        padding-bottom: 100%; /* Устанавливаем высоту равной ширине, создавая квадрат */
+        background-color: var(--secondary-color);
+        border-radius: 10px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: bold;
+        font-size: 1.5rem;
+        /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); */
+        position: relative; /* Относительное позиционирование для содержимого внутри */
+        overflow: hidden; /* Обрезает содержимое, если оно выходит за границы */
+      }
+
+      /* Стили для реального изображения внутри квадрата */
+      .step-image img {
+        position: absolute; /* Абсолютное позиционирование внутри родителя */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Изображение будет заполнять весь контейнер, обрезая лишнее */
+      }
+
+      .step-description {
+        font-size: 0.9rem;
+        padding: 0 5px;
+      }
+
+      .attention-block {
+        background-color: var(--primary-color);
+        padding: 30px;
+        border-radius: 15px;
+        color: #fff;
+        margin: 0 20px;
+      }
+
+      .attention-block h2 {
+        color: #fff;
+        border-bottom-color: #fff;
+        text-align: center;
+      }
+
+      .attention-block p {
+        padding: 0 10px;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          margin: 20px auto;
+          padding: 30px 10px;
+        }
+        .header h1 {
+          font-size: 2.5rem;
+        }
+        .intro-text {
+          font-size: 1rem;
+        }
+        .section h2 {
+          font-size: 1.7rem;
+        }
+        .step-row {
+          flex-direction: column;
+          align-items: center;
+        }
+        .step-item {
+          width: 80%;
+          max-width: 300px;
+        }
+        body::before,
+        body::after {
+          width: 80px;
+          height: 80px;
+          filter: blur(30px);
+        }
+        body::before {
+          left: -30px;
+          top: 5%;
+        }
+        body::after {
+          right: -30px;
+          bottom: 3%;
+        }
+        .sprinkle-item {
+          display: none;
+        } /* Скрываем на мобильных, чтобы не перегружать */
+      }
+      @media (max-width: 480px) {
+        .header h1 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sprinkle-item"></div>
+    <div class="sprinkle-item"></div>
+    <div class="sprinkle-item"></div>
+    <div class="sprinkle-item"></div>
+    <div class="sprinkle-item"></div>
+    <div class="sprinkle-item"></div>
+    <div class="sprinkle-item"></div>
+    <div class="sprinkle-item"></div>
+    <div class="sprinkle-item"></div>
+    <div class="sprinkle-item"></div>
+    <div class="sprinkle-item"></div>
+    <div class="sprinkle-item"></div>
+    <div class="sprinkle-item"></div>
+    <div class="sprinkle-item"></div>
+    <div class="sprinkle-item"></div>
+    <div class="sprinkle-item"></div>
+    <div class="sprinkle-item"></div>
+    <div class="sprinkle-item"></div>
+    <div class="sprinkle-item"></div>
+    <div class="sprinkle-item"></div>
+    <div class="sprinkle-item"></div>
+
+    <div class="container">
+      <div class="header">
+        <h1>Инструкция по созданию коврика</h1>
+      </div>
+
+      <div class="intro-text">
+        <p>
+          Здесь будет вдохновляющее и мотивирующее описание. Расскажите, как
+          легко и увлекательно создавать коврик своими руками, даже если это ваш
+          первый опыт.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>Подготовка</h2>
+        <div class="step-row">
+          <div class="step-item">
+            <div class="step-image">
+              <img src="/assets/1.jpg" alt="Описание первого шага подготовки" />
+            </div>
+            <p class="step-description">Описание первого шага подготовки.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-image">
+              <img src="assets/2.jpg" alt="Описание второго шага подготовки" />
+            </div>
+            <p class="step-description">Описание второго шага подготовки.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-image">
+              <img src="assets/3.jpg" alt="Описание третьего шага подготовки" />
+            </div>
+            <p class="step-description">Описание третьего шага подготовки.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-image">
+              <img src="assets/4.jpg" alt="Описание четвертого шага подготовки" />
+            </div>
+            <p class="step-description">Описание четвертого шага подготовки.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Вышивка</h2>
+        <div class="step-row">
+          <div class="step-item">
+            <div class="step-image">
+              <img src="assets/5.jpg" alt="Описание первого шага вышивки" />
+            </div>
+            <p class="step-description">Описание первого шага вышивки.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-image">
+              <img src="assets/6.jpg" alt="Описание второго шага вышивки" />
+            </div>
+            <p class="step-description">Описание второго шага вышивки.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-image">
+              <img src="assets/7.jpg" alt="Описание третьего шага вышивки" />
+            </div>
+            <p class="step-description">Описание третьего шага вышивки.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-image">
+              <img src="assets/8.jpg" alt="Описание четвертого шага вышивки" />
+            </div>
+            <p class="step-description">Описание четвертого шага вышивки.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Завершение</h2>
+        <div class="step-row">
+          <div class="step-item">
+            <div class="step-image">
+              <img src="assets/9.jpg" alt="Описание первого шага завершения" />
+            </div>
+            <p class="step-description">Описание первого шага завершения.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-image">
+              <img src="assets/10.jpg" alt="Описание второго шага завершения" />
+            </div>
+            <p class="step-description">Описание второго шага завершения.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-image">
+              <img src="assets/11.jpg" alt="Описание третьего шага завершения" />
+            </div>
+            <p class="step-description">Описание третьего шага завершения.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-image">
+              <img src="assets/12.jpg" alt="Описание четвертого шага завершения" />
+            </div>
+            <p class="step-description">Описание четвертого шага завершения.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="attention-block">
+          <h2>На что обратить внимание!</h2>
+          <p>
+            - Держим иголку перпендикулярно ткани срезом вперед - Не забываем
+            продевать нитку в ушко иглы - Не надо давить на иголку, когда
+            проталкиваете ее через ткань, просто легонько прокрутите ее и тогда
+            она не порвется - Нитка всегда должна быть свободной. При малейшем
+            натяжениии, петельки сразу будут меньше или вообще не будут
+            получаться - Если перелька попала одна в другую - воспользуйтесь
+            маленьким крючком, чтобы их распутать -
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

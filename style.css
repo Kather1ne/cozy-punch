@@ -1,0 +1,626 @@
+:root {
+    /* --primary-color: #f7d7c4; Нежно-персиковый */
+    --primary-color: #ffae7e;
+    /* персиковый */
+    --secondary-color: #a4c3b2;
+    /* Мятный */
+    --third-color: #f6d0e1;
+    /* розовый */
+    --text-color: #333;
+    --background-color: #f9f9f9;
+    --sprinkle-pink: #f6d0e1;
+    --sprinkle-peach: #f7d7c4;
+    --sprinkle-mint: #a4c3b2;
+}
+
+body {
+    font-family: 'Noto Sans', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* --- Графические элементы "Узелки" (круги) --- */
+body::before,
+body::after {
+    content: '';
+    position: fixed;
+    width: 150px;
+    height: 150px;
+    background-color: rgba(var(--sprinkle-peach), 0.4);
+    border-radius: 50%;
+    z-index: -1;
+    filter: blur(50px);
+    opacity: 0.6;
+}
+
+body::before {
+    top: 10%;
+    left: -50px;
+    background-color: rgba(var(--sprinkle-mint), 0.3);
+    width: 200px;
+    height: 200px;
+}
+
+body::after {
+    bottom: 5%;
+    right: -70px;
+    background-color: rgba(var(--sprinkle-pink), 0.5);
+}
+
+/* --- Графические элементы "Посыпка" (стежки) --- */
+.sprinkle-item {
+    position: absolute;
+    width: 40px;
+    height: 8px;
+    border-radius: 4px;
+    opacity: 0.5;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Цвета и позиционирование для каждого элемента "посыпки" */
+.sprinkle-item:nth-child(1) {
+    background-color: var(--sprinkle-mint);
+    top: 5%;
+    left: 10%;
+    transform: rotate(15deg);
+}
+
+.sprinkle-item:nth-child(2) {
+    background-color: var(--sprinkle-peach);
+    top: 12%;
+    right: 8%;
+    transform: rotate(-25deg);
+}
+
+.sprinkle-item:nth-child(3) {
+    background-color: var(--sprinkle-pink);
+    top: 20%;
+    left: 3%;
+    transform: rotate(40deg);
+}
+
+.sprinkle-item:nth-child(4) {
+    background-color: var(--sprinkle-mint);
+    top: 28%;
+    right: 15%;
+    transform: rotate(-10deg);
+}
+
+.sprinkle-item:nth-child(5) {
+    background-color: var(--sprinkle-peach);
+    top: 35%;
+    left: 12%;
+    transform: rotate(50deg);
+}
+
+.sprinkle-item:nth-child(6) {
+    background-color: var(--sprinkle-pink);
+    top: 40%;
+    right: 5%;
+    transform: rotate(-35deg);
+}
+
+.sprinkle-item:nth-child(7) {
+    background-color: var(--sprinkle-mint);
+    top: 48%;
+    left: 8%;
+    transform: rotate(20deg);
+}
+
+.sprinkle-item:nth-child(8) {
+    background-color: var(--sprinkle-peach);
+    top: 55%;
+    right: 12%;
+    transform: rotate(-5deg);
+}
+
+.sprinkle-item:nth-child(9) {
+    background-color: var(--sprinkle-pink);
+    top: 62%;
+    left: 15%;
+    transform: rotate(60deg);
+}
+
+.sprinkle-item:nth-child(10) {
+    background-color: var(--sprinkle-mint);
+    top: 70%;
+    right: 3%;
+    transform: rotate(-40deg);
+}
+
+.sprinkle-item:nth-child(11) {
+    background-color: var(--sprinkle-peach);
+    top: 78%;
+    left: 5%;
+    transform: rotate(25deg);
+}
+
+.sprinkle-item:nth-child(12) {
+    background-color: var(--sprinkle-pink);
+    top: 85%;
+    right: 10%;
+    transform: rotate(-15deg);
+}
+
+.sprinkle-item:nth-child(13) {
+    background-color: var(--sprinkle-mint);
+    top: 92%;
+    left: 18%;
+    transform: rotate(30deg);
+}
+
+.sprinkle-item:nth-child(14) {
+    background-color: var(--sprinkle-peach);
+    top: 3%;
+    left: 60%;
+    transform: rotate(-20deg);
+}
+
+.sprinkle-item:nth-child(15) {
+    background-color: var(--sprinkle-pink);
+    top: 8%;
+    right: 65%;
+    transform: rotate(35deg);
+}
+
+.sprinkle-item:nth-child(16) {
+    background-color: var(--sprinkle-mint);
+    top: 18%;
+    left: 70%;
+    transform: rotate(-55deg);
+}
+
+.sprinkle-item:nth-child(17) {
+    background-color: var(--sprinkle-peach);
+    top: 25%;
+    right: 60%;
+    transform: rotate(10deg);
+}
+
+.sprinkle-item:nth-child(18) {
+    background-color: var(--sprinkle-pink);
+    top: 33%;
+    left: 75%;
+    transform: rotate(-45deg);
+}
+
+.sprinkle-item:nth-child(19) {
+    background-color: var(--sprinkle-mint);
+    top: 40%;
+    right: 70%;
+    transform: rotate(25deg);
+}
+
+.sprinkle-item:nth-child(20) {
+    background-color: var(--sprinkle-peach);
+    top: 47%;
+    left: 65%;
+    transform: rotate(-10deg);
+}
+
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+    position: relative;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.header h1 {
+    font-size: 3rem;
+    color: var(--secondary-color);
+    margin: 0;
+    line-height: 56px;
+}
+
+.intro-text {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 50px;
+    padding: 0 20px;
+}
+
+/* --- Стили для финального изображения --- */
+.final-rug-container {
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 0 20px;
+}
+
+.final-rug-img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.section {
+    margin-bottom: 60px;
+    padding: 0 20px;
+}
+
+.section h2 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.step-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.step-item {
+    flex: 1 1 200px;
+    max-width: 280px;
+}
+
+.step-image {
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.5rem;
+    /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); */
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    border: 4px solid var(--secondary-color);
+}
+
+.step-image:hover {
+    transform: scale(1.03);
+    /* Немного увеличиваем контейнер */
+}
+
+/* Стили для иконки увеличения */
+.step-image::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Фон иконки */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    /* Изначально скрыта */
+    transition: opacity 0.3s ease;
+    /* SVG иконка лупы */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5a6.5 6.5 0 1 0-6.5 6.5c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>');
+    background-size: 60%;
+    /* Размер иконки */
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Показываем иконку при наведении */
+.step-image:hover::after {
+    opacity: 1;
+}
+
+.step-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- Стили для видео --- */
+.step-video {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    /* Делаем его квадратным */
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); */
+    border: 4px solid var(--secondary-color);
+}
+
+.step-video video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.play-icon::before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 20px solid #fff;
+    margin-left: 5px;
+}
+
+.step-video:hover .play-icon {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* --- Добавьте стили для модального окна с видео --- */
+#videoModal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    /* Выше, чем обычное модальное окно */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+#videoModal .modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 800px;
+}
+
+#video-player {
+    position: relative;
+    padding-bottom: 100%;
+    /* Соотношение сторон 16:9 */
+    height: 0;
+}
+
+#video-player iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 800px;
+    height: 800px;
+
+}
+
+.step-description {
+    font-size: 0.9rem;
+}
+
+.attention-block {
+    background-color: var(--primary-color);
+    padding: 30px;
+    border-radius: 15px;
+    color: #fff;
+    margin: 0 20px;
+}
+
+.attention-block h2 {
+    color: #fff;
+    border-bottom-color: #fff;
+    text-align: center;
+}
+
+.attention-block p {
+    padding: 0 10px;
+}
+
+/* --- Стили для модального окна --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation-name: fade-in;
+    animation-duration: 0.35s;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    border: 2px solid var(--secondary-color);
+    overflow: hidden;
+}
+
+
+.close,
+.prev,
+.next {
+    position: absolute;
+    top: 15px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+    user-select: none;
+    padding: 16px;
+}
+
+.prev,
+.next {
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 60px;
+    padding: 20px;
+}
+
+.close:hover,
+.prev:hover,
+.next:hover {
+    color: #bbb;
+    text-decoration: none;
+}
+
+.close {
+    right: 35px;
+}
+
+.prev {
+    left: 0;
+    border-radius: 0 3px 3px 0;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.modal-image-wrapper {
+    position: relative;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 800px;
+    left: 50%;
+    padding-bottom: 700px;
+}
+
+.caption-container {
+    text-align: center;
+    color: #f2f2f2;
+    padding: 0 10px;
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    width: 70%;
+    transform: translateX(-50%);
+    background: #0000009e;
+    border-radius: 20px;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin: 20px auto;
+        padding: 30px 10px;
+    }
+
+    .header h1 {
+        font-size: 2.5rem;
+    }
+
+    .intro-text {
+        font-size: 0.85rem;
+    }
+
+    .section h2 {
+        font-size: 1.7rem;
+    }
+
+    .step-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .step-item {
+        width: 80%;
+        max-width: 300px;
+    }
+
+    body::before,
+    body::after {
+        width: 80px;
+        height: 80px;
+        filter: blur(30px);
+    }
+
+    body::before {
+        left: -30px;
+        top: 5%;
+    }
+
+    body::after {
+        right: -30px;
+        bottom: 3%;
+    }
+
+    .sprinkle-item {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .prev,
+    .next {
+        top: 85%;
+        font-size: 60px;
+        padding: 20px;
+    }
+}
