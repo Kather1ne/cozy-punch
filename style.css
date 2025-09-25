@@ -238,14 +238,18 @@ body::after {
 /* --- Стили для финального изображения --- */
 .final-rug-container {
     text-align: center;
+    width: 500px;
+    height: 340px;
+    margin: auto;
     margin-bottom: 50px;
     padding: 0 20px;
+    overflow: hidden;
 }
 
 .final-rug-img {
     width: 100%;
-    max-width: 600px;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
@@ -268,7 +272,6 @@ body::after {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: center;
     margin-bottom: 40px;
 }
 
@@ -401,15 +404,15 @@ body::after {
 }
 
 .attention-block {
-    background-color: var(--primary-color);
+    background-color: var(--third-color);
     padding: 30px;
     border-radius: 15px;
-    color: #fff;
+    color: #3a3a3a;
     margin: 0 20px;
 }
 
 .attention-block h2 {
-    color: #fff;
+    color: #3a3a3a;
     border-bottom-color: #fff;
     text-align: center;
 }
@@ -418,10 +421,20 @@ body::after {
     padding: 0 10px;
 }
 
+.attention-list {
+    list-style: none;
+    padding: 0;
+    /* margin: 0; */
+}
+
+.attention-block li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
 .notification-block {
-    /* background-color: var(--third-color); */
-    /* padding: 30px; */
-    /* border-radius: 15px; */
     color: #2b2b2b;
     margin: 0 0 20px;
 }
@@ -457,24 +470,28 @@ body::after {
 .modal-content-container {
     position: relative;
     top: 50%;
-    transform: translateY(-50%);
-    margin: auto;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 80%;
-    max-width: 800px;
-    border-radius: 10px;
-    overflow: hidden;
+
 }
 
 /* Контейнеры для изображения и видео. По умолчанию скрыты */
 .modal-image-wrapper,
 .modal-video-wrapper {
     display: none;
+    width: 800px;
+    height: 800px;
+    margin: auto;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .modal-content {
     display: block;
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     animation-name: fade-in;
     animation-duration: 0.6s;
 }
@@ -507,11 +524,15 @@ body::after {
 .prev {
     left: 0;
     border-radius: 0 3px 3px 0;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .next {
     right: 0;
     border-radius: 3px 0 0 3px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 /* .caption-container {
@@ -543,9 +564,10 @@ body::after {
     color: #f2f2f2;
     padding: 0 10px;
     position: absolute;
-    bottom: 5%;
+    top: 9%;
     left: 50%;
-    width: 70%;
+    width: 60%;
+    max-width: 680px;
     transform: translateX(-50%);
     background: #0000009e;
     border-radius: 20px;
@@ -569,6 +591,7 @@ body::after {
 
     .header h1 {
         font-size: 2.5rem;
+        line-height: 1.2em;
     }
 
     .intro-text {
@@ -608,6 +631,42 @@ body::after {
 
     .sprinkle-item {
         display: none;
+    }
+
+    .final-rug-container {
+        width: 90%;
+        height: 0;
+        padding: 0;
+        padding-bottom: 60%;
+        position: relative;
+    }
+
+    .final-rug-img {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .attention-block li {
+        font-size: 1rem;
+        padding: 0;
+    }
+
+    .modal-image-wrapper,
+    .modal-video-wrapper {
+        width: 100%;
+        height: auto;
+    }
+
+    .caption-container {
+        top: auto;
+        bottom: 5%;
+        font-size: 0.8rem;
+    }
+
+    .close {
+        right: 10px;
+        top: -10px;
     }
 }
 

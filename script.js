@@ -11,8 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
   
   if (rugDesigns[rugDesignName]) {
     finalRugImage.src =
-      window.location.origin +
-      window.location.pathname +
+    //   window.location.origin +
+    //   window.location.pathname +
       "/assets/rug-designs/" +
       rugDesigns[rugDesignName];
     finalImageStep.src = finalRugImage.src; // Обновляем data-src для шага
