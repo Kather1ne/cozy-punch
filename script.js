@@ -4,12 +4,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const finalRugImage = document.getElementById("final-rug-image");
   const finalImageStep = document.querySelector(".final-image img");
 
+  console.log(
+    "window.location.origin + window.location.pathname +: ",
+    window.location.origin + window.location.pathname
+  );
+  
   if (rugDesigns[rugDesignName]) {
     finalRugImage.src =
       window.location.origin +
+      window.location.pathname +
       "/assets/rug-designs/" +
       rugDesigns[rugDesignName];
-    finalImageStep.src = finalRugImage.src; // Обновляем data-src для шага  
+    finalImageStep.src = finalRugImage.src; // Обновляем data-src для шага
   } else {
     // Если параметр не найден, показываем изображение по умолчанию
     finalRugImage.src =

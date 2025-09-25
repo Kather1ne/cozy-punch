@@ -66,8 +66,8 @@ body::after {
 /* Цвета и позиционирование для каждого элемента "посыпки" */
 .sprinkle-item:nth-child(1) {
     background-color: var(--sprinkle-mint);
-    top: 5%;
-    left: 10%;
+    top: 8%;
+    left: 5%;
     transform: rotate(15deg);
 }
 
@@ -88,15 +88,15 @@ body::after {
 .sprinkle-item:nth-child(4) {
     background-color: var(--sprinkle-mint);
     top: 28%;
-    right: 15%;
+    right: 5%;
     transform: rotate(-10deg);
 }
 
 .sprinkle-item:nth-child(5) {
     background-color: var(--sprinkle-peach);
     top: 35%;
-    left: 12%;
-    transform: rotate(50deg);
+    left: 5%;
+    transform: rotate(115deg);
 }
 
 .sprinkle-item:nth-child(6) {
@@ -109,21 +109,21 @@ body::after {
 .sprinkle-item:nth-child(7) {
     background-color: var(--sprinkle-mint);
     top: 48%;
-    left: 8%;
+    left: 7%;
     transform: rotate(20deg);
 }
 
 .sprinkle-item:nth-child(8) {
     background-color: var(--sprinkle-peach);
     top: 55%;
-    right: 12%;
+    right: 6%;
     transform: rotate(-5deg);
 }
 
 .sprinkle-item:nth-child(9) {
     background-color: var(--sprinkle-pink);
     top: 62%;
-    left: 15%;
+    left: 2%;
     transform: rotate(60deg);
 }
 
@@ -144,28 +144,28 @@ body::after {
 .sprinkle-item:nth-child(12) {
     background-color: var(--sprinkle-pink);
     top: 85%;
-    right: 10%;
+    right: 4%;
     transform: rotate(-15deg);
 }
 
 .sprinkle-item:nth-child(13) {
     background-color: var(--sprinkle-mint);
     top: 92%;
-    left: 18%;
-    transform: rotate(30deg);
+    left: 3%;
+    transform: rotate(70deg);
 }
 
 .sprinkle-item:nth-child(14) {
     background-color: var(--sprinkle-peach);
     top: 3%;
-    left: 60%;
+    left: 14%;
     transform: rotate(-20deg);
 }
 
 .sprinkle-item:nth-child(15) {
     background-color: var(--sprinkle-pink);
     top: 8%;
-    right: 65%;
+    right: 1%;
     transform: rotate(35deg);
 }
 
@@ -178,16 +178,16 @@ body::after {
 
 .sprinkle-item:nth-child(17) {
     background-color: var(--sprinkle-peach);
-    top: 25%;
-    right: 60%;
-    transform: rotate(10deg);
+    top: 19%;
+    right: 3%;
+    transform: rotate(30deg);
 }
 
 .sprinkle-item:nth-child(18) {
-    background-color: var(--sprinkle-pink);
-    top: 33%;
-    left: 75%;
-    transform: rotate(-45deg);
+    background-color: var(--sprinkle-mint);
+    top: 27%;
+    left: 2.5%;
+    transform: rotate(-94deg);
 }
 
 .sprinkle-item:nth-child(19) {
@@ -416,6 +416,25 @@ body::after {
 
 .attention-block p {
     padding: 0 10px;
+}
+
+.notification-block {
+    /* background-color: var(--third-color); */
+    /* padding: 30px; */
+    /* border-radius: 15px; */
+    color: #2b2b2b;
+    margin: 0 0 20px;
+}
+
+.notification-block::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: var(--secondary-color);
+    border-radius: 50%;
+    margin-right: 8px;
+    margin-bottom: 2px;
 }
 
 /* ... (весь предыдущий CSS) ... */
