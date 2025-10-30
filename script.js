@@ -3,16 +3,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const rugDesignName = getUrlParameter("design");
   const finalRugImage = document.getElementById("final-rug-image");
   const finalImageStep = document.querySelector(".final-image img");
+  const nameTitle = document.getElementById("rug-name");
 
-  console.log(
-    "window.location.origin + window.location.pathname +: ",
-    window.location.origin + window.location.pathname
-  );
 
   if (rugDesigns[rugDesignName]) {
     const finalImagePath = "assets/rug-designs/" + rugDesigns[rugDesignName];
     finalRugImage.src = finalImagePath;
-    finalImageStep.src = finalImagePath; // Обновляем data-src для шага
+    finalImageStep.src = finalImagePath; 
+    nameTitle.textContent = namesMap[rugDesignName];
   } else {
     // Если параметр не найден, показываем изображение по умолчанию
     finalRugImage.src =
@@ -23,6 +21,12 @@ document.addEventListener("DOMContentLoaded", () => {
 // Объект с путями к изображениям для разных дизайнов
 const rugDesigns = {
   blue_abstract: "blue-abstract.jpg",
+  home_flowers: "home-flowers.jpg",
+};
+
+const namesMap = {
+  blue_abstract: "Абстракция в синих тонах",
+  home_flowers: "Домашние цветы",
 };
 
 // Функция для получения параметра из URL
