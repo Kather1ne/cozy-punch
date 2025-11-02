@@ -22,11 +22,13 @@ document.addEventListener("DOMContentLoaded", () => {
 const rugDesigns = {
   blue_abstract: "blue-abstract.jpg",
   home_flowers: "home-flowers.jpg",
+  red_abstract: "red-abstract.jpg",
 };
 
 const namesMap = {
   blue_abstract: "Абстракция в синих тонах",
   home_flowers: "Домашние цветы",
+  red_abstract: "Розовая абстракция",
 };
 
 // Функция для получения параметра из URL
